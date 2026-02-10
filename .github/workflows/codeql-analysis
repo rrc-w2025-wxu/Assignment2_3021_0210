@@ -1,0 +1,28 @@
+name: "CodeQL"
+
+# Trigger events
+on:
+  push:
+    branches: [ main, rrc-w2025-wxu-patch-1 ]  # Trigger on push to main or your feature branch
+  pull_request:
+    branches: [ main ]  # Trigger on pull request to main
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # 2️⃣ Initialize CodeQL
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python  # Specify the language of your project, e.g., python, javascript, java
+
+      # 3️⃣ Perform CodeQL Analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
